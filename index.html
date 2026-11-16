@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Sondage anonyme du channel Tech News Smart Control.">
+  <title>GRUE.EXE · Tech News Smart Control</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23000'/%3E%3Cpath fill='%2333FF66' d='M1 2h14v1H1zM6 3h2v10H6zM3 3h1v3H3zM12 3h1v4h-1zM11 7h3v2h-3zM3 13h8v2H3z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <!-- Pictos pixel partagés · coche Windows 95 7 × 7, dé -->
+  <svg class="sprites" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="i-coche" viewBox="0 0 7 7"><path d="M6 0h1v1H6zM5 1h2v1H5zM0 2h1v1H0zM4 2h3v1H4zM0 3h2v1H0zM3 3h3v1H3zM0 4h5v1H0zM1 5h3v1H1zM2 6h1v1H2z"/></symbol>
+    <symbol id="i-de" viewBox="0 0 9 9"><path d="M1 0h7v1H1zM0 1h1v7H0zM8 1h1v7H8zM1 8h7v1H1zM2 2h1v1H2zM6 2h1v1H6zM4 4h1v1H4zM2 6h1v1H2zM6 6h1v1H6z"/></symbol>
+  </svg>
+
+  <div class="fenetre">
+    <header class="barre-titre">
+      <h1 class="titre-app">GRUE.EXE&nbsp;· Tech News Smart Control</h1>
+      <span class="boutons-fenetre" aria-hidden="true"><span class="bf bf-reduire"></span><span class="bf bf-agrandir"></span><span class="bf bf-fermer"></span></span>
+    </header>
+
+    <div class="jauge" id="jauge" aria-hidden="true" hidden>
+      <p class="jauge-libelles"><span id="jauge-etape"></span><span id="jauge-texte"></span></p>
+      <div class="jauge-voie" id="jauge-voie">
+        <div class="jauge-remplissage"></div>
+      </div>
+    </div>
+
+    <main id="zone-question" class="zone-question" tabindex="-1">
+      <noscript>
+        <p>Ce sondage a besoin de JavaScript. Active-le ou signale le problème dans le channel.</p>
+      </noscript>
+    </main>
+
+    <footer class="barre-etat">
+      <p class="panneau blague" id="blague"></p>
+      <p class="panneau version" id="version">v265.01</p>
+    </footer>
+  </div>
+
+  <!-- Envoi puis Fin · même case, pas de saut de mise en page. Cloné par app.js. -->
+  <template id="modele-scene">
+    <div class="scene" data-etat="envoi">
+
+      <div class="etat-envoi">
+        <svg class="sablier" viewBox="0 0 13 18" width="52" height="72" aria-hidden="true" focusable="false">
+          <path class="sablier-plateau" d="M0 0h13v2H0zM0 16h13v2H0z"/>
+          <path class="sablier-verre" d="M1 2h1v3H1zM11 2h1v3h-1zM2 5h1v1H2zM10 5h1v1h-1zM3 6h1v1H3zM9 6h1v1H9zM4 7h1v1H4zM8 7h1v1H8zM5 8h1v2H5zM7 8h1v2H7zM4 10h1v1H4zM8 10h1v1H8zM3 11h1v1H3zM9 11h1v1H9zM2 12h1v1H2zM10 12h1v1h-1zM1 13h1v3H1zM11 13h1v3h-1z"/>
+          <path class="sablier-sable" d="M3 5h7v1H3zM4 6h5v1H4zM5 7h3v1H5zM6 8h1v6H6zM4 14h5v1H4zM2 15h9v1H2z"/>
+        </svg>
+        <h2 class="envoi-texte" tabindex="-1">Envoi en cours…</h2>
+      </div>
+
+      <div class="etat-fin">
+        <div class="jauge-fin" aria-hidden="true">
+          <div class="jauge-voie"><span class="jauge-remplissage"></span></div>
+          <p class="jauge-libelle">Installation complete ✓ 100&nbsp;%</p>
+        </div>
+
+        <h2 class="question merci-titre" tabindex="-1">Merci, c'est envoyé.</h2>
+        <p>Les résultats seront publiés dans le channel après la clôture du sondage.</p>
+
+        <div class="pseudo">
+          <p class="pseudo-ligne">Ton pseudo&nbsp;· <span class="pseudo-valeur" id="pseudo"></span></p>
+          <div class="pseudo-actions">
+            <button type="button" class="btn" id="copier">Copier</button>
+            <p class="pseudo-etat" id="pseudo-etat" role="status"></p>
+          </div>
+          <p class="pseudo-aide">Donne-le à l'animatrice si tu veux qu'elle te recontacte. Elle saura alors quelles réponses sont les tiennes.</p>
+        </div>
+
+        <div class="badges">
+          <svg class="badge" viewBox="0 0 88 31" width="176" height="62" role="img" aria-label="MADE WITH COPILOT" lang="en">
+            <rect width="88" height="31" fill="#000"/>
+            <path d="M0 0h88v1H1v30H0z" fill="#D4F7DE"/>
+            <path d="M88 0v31H0v-1h87V0z" fill="#4D6B56"/>
+            <rect x="2.5" y="2.5" width="83" height="26" fill="none" stroke="#278C4C"/>
+            <text x="44" y="13" text-anchor="middle" font-size="10" fill="#9BE8B0">MADE WITH</text>
+            <text x="44" y="25" text-anchor="middle" font-size="14" fill="#33FF66">COPILOT</text>
+          </svg>
+          <svg class="badge" viewBox="0 0 88 31" width="176" height="62" role="img" aria-label="100 % ANONYME">
+            <rect width="88" height="31" fill="#000"/>
+            <path d="M0 0h88v1H1v30H0z" fill="#D4F7DE"/>
+            <path d="M88 0v31H0v-1h87V0z" fill="#4D6B56"/>
+            <rect x="2" y="2" width="37" height="27" fill="#33FF66"/>
+            <text x="20.5" y="20" text-anchor="middle" font-size="14" fill="#000">100&#160;%</text>
+            <text x="63" y="20" text-anchor="middle" font-size="12" fill="#33FF66">ANONYME</text>
+          </svg>
+          <svg class="badge" viewBox="0 0 88 31" width="176" height="62" role="img" aria-label="GRUE.EXE v265">
+            <rect width="88" height="31" fill="#000"/>
+            <path d="M0 0h88v1H1v30H0z" fill="#D4F7DE"/>
+            <path d="M88 0v31H0v-1h87V0z" fill="#4D6B56"/>
+            <path fill="#9BE8B0" d="M4 6h18v1H4zM9 7h2v19H9zM6 26h8v2H6zM4 7h3v3H4zM19 7h1v7h-1zM18 14h3v2h-3z"/>
+            <text x="55" y="14" text-anchor="middle" font-size="12" fill="#33FF66">GRUE.EXE</text>
+            <text x="51" y="26" text-anchor="middle" font-size="11" fill="#9BE8B0">v265</text>
+            <rect class="b-curseur" x="61" y="19" width="4" height="7" fill="#33FF66"/>
+          </svg>
+        </div>
+
+        <div class="trombone-zone" id="trombone-zone">
+          <div class="bulle" id="bulle">
+            <p>Il semble que tu aies terminé un sondage. Besoin d'aide&nbsp;?</p>
+            <button type="button" class="btn" id="non-merci">Non merci</button>
+          </div>
+          <svg class="trombone" id="trombone" viewBox="0 0 12 26" width="36" height="78" aria-hidden="true" focusable="false">
+            <path class="trombone-fil" d="M4 0h4v1H4zM3 1h1v1H3zM8 1h1v1H8zM2 2h1v1H2zM9 2h1v1H9zM1 3h1v19H1zM10 3h1v21h-1zM9 24h1v1H9zM5 25h4v1H5zM4 7h1v18H4zM5 6h2v1H5zM7 7h1v13H7z"/>
+            <path class="trombone-oeil" d="M2 10h2v3H2zM8 10h2v3H8z"/>
+            <path class="trombone-pupille" d="M2 11h1v1H2zM8 11h1v1H8z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </template>
+</body>
+</html>
